@@ -1,0 +1,11 @@
+{
+    "User": true,
+    "Admin": true,
+    "Category": true,
+    "Brand": true,
+    "Item": true,
+    "Payment": true,
+    "Order": true,
+    "Cart": true,
+    "Review": true
+}
