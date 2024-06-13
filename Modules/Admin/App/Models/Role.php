@@ -5,7 +5,7 @@ namespace Modules\Admin\App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use EloquentFilter\Filterable;
-use Modules\Admin\App\Filters\RolesFilter;
+use Modules\Admin\App\Filters\RoleFilter;
 
 class Role extends Model
 {
@@ -17,7 +17,7 @@ class Role extends Model
 
     public function modelFilter()
     {
-        return $this->provideFilter(RolesFilter::class);
+        return $this->provideFilter(RoleFilter::class);
     }
     /**
      * The attributes that are mass assignable.

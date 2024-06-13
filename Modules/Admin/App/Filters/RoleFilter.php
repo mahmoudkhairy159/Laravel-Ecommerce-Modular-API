@@ -4,7 +4,7 @@ namespace Modules\Admin\App\Filters;
 
 use EloquentFilter\ModelFilter;
 
-class RolesFilter extends ModelFilter
+class RoleFilter extends ModelFilter
 {
 
 
