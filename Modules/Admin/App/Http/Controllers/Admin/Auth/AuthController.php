@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Admin\App\Http\Controllers\Auth;
+namespace Modules\Admin\App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Traits\ApiResponseTrait;
@@ -41,10 +41,7 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * @param AdminLoginRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function login(AdminLoginRequest $request)
     {
         try {
@@ -89,9 +86,7 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * @return JsonResponse
-     */
+
     public function get()
     {
         try {
@@ -111,11 +106,7 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * @return JsonResponse
-     * @throws ValidationException
-     * @throws ValidatorException
-     */
+
     public function update(AuthUpdateAdminRequest $request)
     {
         try {
@@ -125,7 +116,7 @@ class AuthController extends Controller
 
             if (!isset($data['password']) || !$data['password']) {
                 unset($data['password']);
-            } 
+            }
             $updatedAdmin = $this->adminRepository->update($data, $admin->id);
             return $this->successResponse(
                 new AdminResource($updatedAdmin),
@@ -141,12 +132,8 @@ class AuthController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
+
+    public function logout()
     {
         try {
             auth()->guard($this->guard)->logout();

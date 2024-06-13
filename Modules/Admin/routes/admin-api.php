@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\Admin\App\Http\Controllers\AdminsController;
-use Modules\Admin\App\Http\Controllers\AuthController;
-use Modules\Admin\App\Http\Controllers\PermissionsController;
-use Modules\Admin\App\Http\Controllers\RolesController;
+use Modules\Admin\App\Http\Controllers\Admin\AdminController;
+use Modules\Admin\App\Http\Controllers\Admin\Auth\AuthController;
+use Modules\Admin\App\Http\Controllers\Admin\PermissionController;
+use Modules\Admin\App\Http\Controllers\Admin\RoleController;
 
 /*
     |--------------------------------------------------------------------------
@@ -21,8 +21,8 @@ use Modules\Admin\App\Http\Controllers\RolesController;
 Route::prefix('v1')->name('admin-api.')->group(function () {
     // Auth routes
     Route::controller(AuthController::class)->name('auth.')->prefix('/auth')->group(function () {
-        Route::post('/login', 'create')->name('login');
-        Route::post('/logout', 'destroy')->name('logout');
+        Route::post('/login', 'login')->name('login');
+        Route::post('/logout', 'logout')->name('logout');
         Route::post('/refresh-token', 'refresh')->name('refresh-token');
         Route::post('/update-info', 'update')->name('update-info');
         Route::get('/get-info', 'get')->name('get-info');
@@ -31,19 +31,19 @@ Route::prefix('v1')->name('admin-api.')->group(function () {
 
 
     // Permissions routes
-    Route::controller(PermissionsController::class)->name('permissions.')->prefix('/permissions')->group(function () {
+    Route::controller(PermissionController::class)->name('permissions.')->prefix('/permissions')->group(function () {
         Route::get('/', 'index')->name('index');
     });
     // Permissions routes
 
 
     // Roles routes
-    Route::apiResource('roles',RolesController::class);
+    Route::apiResource('roles',RoleController::class);
     // Roles routes
 
 
     // Admins routes
-    Route::apiResource('admins',AdminsController::class);
+    Route::apiResource('admins',AdminController::class);
     // Admins routes
 
 });

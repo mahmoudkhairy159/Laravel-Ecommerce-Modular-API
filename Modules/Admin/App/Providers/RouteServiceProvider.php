@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api/admin')
             ->middleware('api')
-            ->namespace($this->moduleNamespace)
+            ->namespace($this->moduleNamespace.'\Admin')
             ->group(module_path('Admin', '/routes/admin-api.php'));
     }
 }
