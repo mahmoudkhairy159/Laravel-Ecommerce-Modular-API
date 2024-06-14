@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Category\App\Http\Controllers\Api\CategoryController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('category', fn (Request $request) => $request->user())->name('category');
+Route::prefix('v1')->name('user-api.')->group(function () {
+
+    //categories routes
+    Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);
+    //categories routes
+
+
+
+
+
+
+
 });
