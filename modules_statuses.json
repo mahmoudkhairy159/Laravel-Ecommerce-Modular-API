@@ -7,5 +7,6 @@
     "Payment": true,
     "Order": true,
     "Cart": true,
-    "Review": true
+    "Review": true,
+    "Area": true
 }

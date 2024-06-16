@@ -1,20 +1,20 @@
 <?php
 
-namespace Modules\User\App\Http\Controllers;
+namespace Modules\Area\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class UserController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('user::index');
+        return view('area::index');
     }
 
     /**
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user::create');
+        return view('area::create');
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user::show');
+        return view('area::show');
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user::edit');
+        return view('area::edit');
     }
 
     /**
