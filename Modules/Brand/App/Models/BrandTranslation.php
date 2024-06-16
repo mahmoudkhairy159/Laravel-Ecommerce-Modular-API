@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Category\App\Models;
+namespace Modules\Brand\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CategoryTranslation extends Model
+class BrandTranslation extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'description'];

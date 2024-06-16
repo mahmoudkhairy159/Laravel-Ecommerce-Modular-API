@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\Category\App\Http\Controllers\Admin\CategoryController;
+use Modules\Brand\App\Http\Controllers\Admin\BrandController;
 
 /*
     |--------------------------------------------------------------------------
@@ -17,16 +17,16 @@ use Modules\Category\App\Http\Controllers\Admin\CategoryController;
 
 Route::prefix('v1')->name('admin-api.')->group(function () {
 
-    //categories routes
-    /***********Trashed categories SoftDeletes**************/
-    Route::controller(CategoryController::class)->prefix('categories')->as('categories.')->group(function () {
+    //brands routes
+    /***********Trashed brands SoftDeletes**************/
+    Route::controller(BrandController::class)->prefix('brands')->as('brands.')->group(function () {
         Route::get('trashed', 'getOnlyTrashed')->name('getOnlyTrashed');
         Route::delete('force-delete/{id}', 'forceDelete')->name('forceDelete');
         Route::post('restore/{id}', 'restore')->name('restore');
     });
-    /***********Trashed categories SoftDeletes**************/
-    Route::apiResource('categories',CategoryController::class);
-    //categories routes
+    /***********Trashed brands SoftDeletes**************/
+    Route::apiResource('brands',BrandController::class);
+    //brands routes
 
 
 });

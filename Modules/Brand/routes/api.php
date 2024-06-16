@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Brand\App\Http\Controllers\Api\BrandController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('brand', fn (Request $request) => $request->user())->name('brand');
+Route::prefix('v1')->name('user-api.')->group(function () {
+
+    //brands routes
+    Route::apiResource('brands', BrandController::class)->only(['index', 'show']);
+    //brands routes
+
+
+
+
+
+
+
 });
