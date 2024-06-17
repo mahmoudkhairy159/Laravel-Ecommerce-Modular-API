@@ -12,8 +12,10 @@ use Modules\User\App\Filters\UserFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Modules\Admin\App\Models\Admin;
 use Modules\Area\App\Models\City;
 use Modules\Area\App\Models\Country;
+use Modules\Payment\App\Models\UserPayment;
 use Modules\User\Database\Factories\UserFactory;
 
 
@@ -136,6 +138,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->hasOne(UserProfile::class, 'user_id');
     }
+    public function payment()
+    {
+        return $this->hasMany(UserPayment::class, 'user_id');
+    }
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
@@ -150,6 +156,14 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function otps()
     {
         return $this->hasMany(UserOTP::class, 'user_id');
+    }
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by');
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
     }
     /******************* end relationships********************/
 

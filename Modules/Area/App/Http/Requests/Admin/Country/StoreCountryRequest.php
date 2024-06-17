@@ -1,18 +1,19 @@
 <?php
 
-namespace Modules\Area\App\Http\Requests\Country;
+namespace Modules\Area\App\Http\Requests\Admin\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateCountryRequest extends FormRequest
+class StoreCountryRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
     {
+
         $supportedLocales = core()->getSupportedLanguagesKeys();
         $rules = [];
 
@@ -20,8 +21,9 @@ class UpdateCountryRequest extends FormRequest
             $rules[$locale . '.name']   = ['required', 'string', 'max:255'];
             $rules[$locale . '.description']   = ['required', 'string'];
         }
-        $rules['code'] = ['required', 'unique:countries,code,' . request('id')];
+        $rules['code'] = ['required', 'unique:countries,code'];
         $rules['status'] = ['required','in:0,1'];
+
         return $rules;
     }
 
@@ -32,6 +34,7 @@ class UpdateCountryRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Handle a failed validation attempt.
      *

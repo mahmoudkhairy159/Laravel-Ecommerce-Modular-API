@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Area\App\Repositories\CountryRepository;
 use Modules\Area\App\resources\Country\CountryResource;
-use Modules\Area\App\Http\Requests\Country\StoreCountryRequest;
-use Modules\Area\App\Http\Requests\Country\UpdateCountryRequest;
+use Modules\Area\App\Http\Requests\Admin\Country\StoreCountryRequest;
+use Modules\Area\App\Http\Requests\Admin\Country\UpdateCountryRequest;
 use Modules\Area\App\resources\Country\CountryCollection;
 
 class CountryController extends Controller

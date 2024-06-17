@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Area\App\Repositories\CityRepository;
 use Modules\Area\App\resources\City\CityCollection;
 use Modules\Area\App\resources\City\CityResource;
-use Modules\Area\App\Http\Requests\City\StoreCityRequest;
-use Modules\Area\App\Http\Requests\City\UpdateCityRequest;
+use Modules\Area\App\Http\Requests\Admin\City\StoreCityRequest;
+use Modules\Area\App\Http\Requests\Admin\City\UpdateCityRequest;
 use Modules\Area\App\Models\City;
 
 class CityController extends Controller

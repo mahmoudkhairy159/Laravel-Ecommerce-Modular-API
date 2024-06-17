@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Area\App\Repositories\CityRepository;
 use Modules\Area\App\resources\City\CityResource;
-use Modules\Area\App\Http\Requests\City\StoreCityRequest;
-use Modules\Area\App\Http\Requests\City\UpdateCityRequest;
+use Modules\Area\App\Http\Requests\Admin\City\StoreCityRequest;
+use Modules\Area\App\Http\Requests\Admin\City\UpdateCityRequest;
 use Modules\Area\App\Models\City;
 use Modules\Area\App\resources\City\CityCollection;
 
@@ -33,7 +33,7 @@ class CityController extends Controller
         // permissions
         $this->middleware('auth:' . $this->guard);
     }
-  
+
 
     public function getByCountryId($country_id)
     {

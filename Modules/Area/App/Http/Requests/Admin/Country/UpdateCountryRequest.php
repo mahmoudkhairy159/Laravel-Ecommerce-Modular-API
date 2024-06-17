@@ -1,21 +1,18 @@
 <?php
 
-namespace Modules\Area\App\Http\Requests\City;
+namespace Modules\Area\App\Http\Requests\Admin\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateCityRequest extends FormRequest
+class UpdateCountryRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
     {
-
-
-
         $supportedLocales = core()->getSupportedLanguagesKeys();
         $rules = [];
 
@@ -23,8 +20,7 @@ class UpdateCityRequest extends FormRequest
             $rules[$locale . '.name']   = ['required', 'string', 'max:255'];
             $rules[$locale . '.description']   = ['required', 'string'];
         }
-        $rules['country_id'] = ['required', 'exists:countries,id'];
-        $rules['code'] = ['nullable', 'unique:cities,code,' .$this->route('id')];
+        $rules['code'] = ['required', 'unique:countries,code,' . request('id')];
         $rules['status'] = ['required','in:0,1'];
         return $rules;
     }
@@ -49,7 +45,7 @@ class UpdateCityRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'errors' => $validator->errors(),
             'message' => 'Validation Error',
-            'statusCode' => 422
+            'statusCode'=>422
         ], 422));
     }
 }

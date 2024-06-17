@@ -19,7 +19,6 @@ class UserRepository extends BaseRepository
     {
         return $this->model
             ->with('profile')
-            ->withCount('followers', 'followings')
             ->filter(request()->all())
             ->orderBy('created_at', 'desc');
     }
@@ -28,19 +27,17 @@ class UserRepository extends BaseRepository
         return $this->model
             ->where('status', User::STATUS_ACTIVE)
             ->with('profile')
-            ->withCount('followers', 'followings')
             ->filter(request()->all())
             ->orderBy('created_at', 'desc');
     }
     public function getOneByUserId(int $id)
     {
-        return $this->model->with('profile')->withCount('followers', 'followings')->where('id', $id)->first();
+        return $this->model->with('profile')->where('id', $id)->first();
     }
     public function findBySlug(string $slug)
     {
         return $this->model->where('slug', $slug)
             ->with('profile')
-            ->withCount('followers', 'followings')
             ->first();
     }
     public function findActiveBySlug(string $slug)
@@ -50,7 +47,6 @@ class UserRepository extends BaseRepository
             ->where('slug', $slug)
             ->where('status', User::STATUS_ACTIVE)
             ->with('profile')
-            ->withCount('followers', 'followings')
             ->first();
     }
 
@@ -233,5 +229,5 @@ class UserRepository extends BaseRepository
     }
 
 
-   
+
 }

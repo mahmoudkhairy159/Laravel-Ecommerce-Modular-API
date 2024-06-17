@@ -2,7 +2,7 @@
 return [
     "countries" => [
         "name" => __('area::app.countries.countries'),
-        "sort" => 3,
+        "sort" => 7,
         "permissions" =>  [
             [
                 'key' => 'countries.show',
@@ -24,7 +24,7 @@ return [
     ],
     "cities" => [
         "name" => __('area::app.cities.cities'),
-        "sort" => 4,
+        "sort" => 8,
         "permissions" =>  [
             [
                 'key' => 'cities.show',
