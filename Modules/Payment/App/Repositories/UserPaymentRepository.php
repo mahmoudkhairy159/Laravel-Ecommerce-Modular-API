@@ -69,5 +69,10 @@ class UserPaymentRepository extends BaseRepository
              return false;
          }
      }
+     public function isPaymentOwner($user_id,$id)
+     {
+             return  $this->model->where('id',$id)->where('user_id',$user_id)->exists();
+     }
+
 
 }

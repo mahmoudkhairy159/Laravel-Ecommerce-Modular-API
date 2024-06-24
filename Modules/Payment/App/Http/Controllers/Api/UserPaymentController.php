@@ -112,6 +112,13 @@ class UserPaymentController extends Controller
 
             $data =  $request->validated();
             $data['user_id'] = auth()->guard($this->guard)->id();
+            if(! $this->userPaymentRepository->isPaymentOwner($data['user_id'],$id)){
+                return $this->messageResponse(
+                    __("payment::app.userPayments.updated-failed"),
+                    false,
+                    400
+                );
+            }
             $updated = $this->userPaymentRepository->update($data, $id);
 
             if ($updated) {
@@ -142,7 +149,14 @@ class UserPaymentController extends Controller
     public function destroy($id)
     {
         try {
-
+            $data['user_id'] = auth()->guard($this->guard)->id();
+            if(! $this->userPaymentRepository->isPaymentOwner($data['user_id'],$id)){
+                return $this->messageResponse(
+                    __("payment::app.userPayments.updated-failed"),
+                    false,
+                    400
+                );
+            }
             $deleted = $this->userPaymentRepository->changePaymentActivity($id);
             if ($deleted) {
                 return $this->messageResponse(
