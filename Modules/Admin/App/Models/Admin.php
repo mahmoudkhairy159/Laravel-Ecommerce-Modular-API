@@ -14,7 +14,6 @@ use Modules\Admin\App\Filters\AdminFilter;
 
 class Admin extends Authenticatable implements JWTSubject
 {
-    use SoftDeletes;
     use HasFactory;
     use Notifiable;
     use Filterable;

@@ -11,6 +11,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Admin\App\Models\Admin;
 use Modules\Category\App\Filters\CategoryFilter;
+use Modules\Item\App\Models\Item;
 
 class Category extends Model implements TranslatableContract
 {
@@ -52,10 +53,10 @@ protected function getImageUrlAttribute()
     protected $table = 'categories';
 
 /**************************Relationships************************************* */
-    //  public function items()
-    //  {
-    //      return $this->hasMany(Item::class,'category_id');
-    //  }
+     public function items()
+     {
+         return $this->hasMany(Item::class);
+     }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');

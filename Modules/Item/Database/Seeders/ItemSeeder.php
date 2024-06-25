@@ -3,16 +3,15 @@
 namespace Modules\Item\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Item\App\Models\Item;
 
-class ItemDatabaseSeeder extends Seeder
+class ItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-         $this->call([
-            ItemSeeder::class,
-         ]);
+        Item::factory()->count(50)->create();
     }
 }

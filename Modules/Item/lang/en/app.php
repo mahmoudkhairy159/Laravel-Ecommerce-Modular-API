@@ -1,0 +1,58 @@
+<?php
+
+return [
+
+    "items" => [
+        "items" => "Items",
+        "item" => "Item",
+        "show" => "Show Items",
+        "create" => "create Item",
+        "update" => "update Item",
+        "delete" => "delete Item",
+        "destroy" => "destroy Item",
+        "created-successfully" => "Item created successfully",
+        "updated-successfully" => "Item updated successfully",
+        "deleted-successfully" => "Item deleted successfully",
+        "restored-successfully" => "Item restored successfully",
+        "created-failed" => "Item created failed",
+        "updated-failed" => "Item updated failed",
+        "deleted-failed" => "Item deleted failed",
+        "restored-failed" => "Item restored failed",
+    ],
+    "itemImages" => [
+        "itemImages" => "ItemImages",
+        "item" => "ItemImage",
+        "show" => "Show ItemImages",
+        "create" => "create ItemImage",
+        "update" => "update ItemImage",
+        "delete" => "delete ItemImage",
+        "destroy" => "destroy ItemImage",
+        "created-successfully" => "ItemImage created successfully",
+        "updated-successfully" => "ItemImage updated successfully",
+        "deleted-successfully" => "ItemImage deleted successfully",
+        "restored-successfully" => "ItemImage restored successfully",
+        "created-failed" => "ItemImage created failed",
+        "updated-failed" => "ItemImage updated failed",
+        "deleted-failed" => "ItemImage deleted failed",
+        "restored-failed" => "ItemImage restored failed",
+    ],
+
+    "relatedItems" => [
+        "relatedItems" => "RelatedItems",
+        "relatedItem" => "RelatedItem",
+        "show" => "Show RelatedItems",
+        "create" => "create RelatedItem",
+        "update" => "update RelatedItem",
+        "delete" => "delete RelatedItem",
+        "destroy" => "destroy RelatedItem",
+        "created-successfully" => "RelatedItem created successfully",
+        "updated-successfully" => "RelatedItem updated successfully",
+        "deleted-successfully" => "RelatedItem deleted successfully",
+        "restored-successfully" => "RelatedItem restored successfully",
+        "created-failed" => "RelatedItem created failed",
+        "updated-failed" => "RelatedItem updated failed",
+        "deleted-failed" => "RelatedItem deleted failed",
+        "restored-failed" => "RelatedItem restored failed",
+    ],
+
+];
