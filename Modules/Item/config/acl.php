@@ -47,7 +47,7 @@ return [
         ],
         "relatedItems" => [
         "name" => __('item::app.relatedItems.relatedItems'),
-        "sort" => 10,
+        "sort" => 12,
         "permissions" =>  [
             [
                 'key' => 'relatedItems.show',
