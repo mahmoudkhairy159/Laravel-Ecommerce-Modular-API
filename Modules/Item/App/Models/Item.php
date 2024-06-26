@@ -12,6 +12,7 @@ use Modules\Admin\App\Models\Admin;
 use Modules\Brand\App\Models\Brand;
 use Modules\Category\App\Models\Category;
 use Modules\Item\App\Filters\ItemFilter;
+use Modules\Order\App\Models\Order;
 
 class Item extends Model implements TranslatableContract
 {
@@ -84,6 +85,10 @@ class Item extends Model implements TranslatableContract
      {
          return $this->belongsToMany(Item::class, 'related_items', 'item_id', 'related_item_id');
      }
+     public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items')->withPivot('quantity', 'price');
+    }
     //relationships
 
 }

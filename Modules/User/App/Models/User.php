@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Admin\App\Models\Admin;
 use Modules\Area\App\Models\City;
 use Modules\Area\App\Models\Country;
+use Modules\Order\App\Models\Order;
 use Modules\Payment\App\Models\UserPayment;
 use Modules\User\Database\Factories\UserFactory;
 
@@ -138,9 +139,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->hasOne(UserProfile::class, 'user_id');
     }
-    public function payment()
+    public function payments()
     {
         return $this->hasMany(UserPayment::class, 'user_id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
     }
     public function city()
     {

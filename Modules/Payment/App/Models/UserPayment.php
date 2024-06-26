@@ -6,6 +6,7 @@ use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Admin\App\Models\Admin;
+use Modules\Order\App\Models\Order;
 use Modules\Payment\App\Filters\UserPaymentFilter;
 use Modules\Payment\Database\factories\UserPaymentFactory;
 use Modules\User\App\Models\User;
@@ -48,7 +49,10 @@ const ACTIVE = 1;
 const INACTIVE = 0;
 //active
     /*******************relationships********************/
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

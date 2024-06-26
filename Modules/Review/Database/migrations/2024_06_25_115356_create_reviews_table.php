@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('item_id');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
+
             $table->timestamps();
             $table->softDeletes();
 
