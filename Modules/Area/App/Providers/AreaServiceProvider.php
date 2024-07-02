@@ -81,6 +81,7 @@ class AreaServiceProvider extends ServiceProvider
         );
     }
 
+
     /**
      * Register views.
      */
@@ -116,6 +117,14 @@ class AreaServiceProvider extends ServiceProvider
 
         return $paths;
     }
+    protected function mergeConfigFrom($path, $key)
+    {
+        $config = $this->app->make('config');
 
+        $config->set($key, array_merge(
+            require $path,
+            $config->get($key, [])
+        ));
+    }
 
 }

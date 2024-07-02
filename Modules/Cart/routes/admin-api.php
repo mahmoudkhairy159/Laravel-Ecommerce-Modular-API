@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Cart\App\Http\Controllers\Api\CartController;
+use Modules\Cart\App\Http\Controllers\Admin\CartController;
+use Modules\Cart\App\Http\Controllers\Admin\DiscountController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,17 +15,16 @@ use Modules\Cart\App\Http\Controllers\Api\CartController;
     |
 */
 
-Route::prefix('v1')->name('user-api.')->group(function () {
+Route::prefix('v1')->name('admin-api.')->group(function () {
 
 
 
 
     // cart routes
     Route::controller(CartController::class)->name('carts.')->prefix('carts')->group(function () {
-        Route::get('', 'viewCart')->name('viewCart');
-        Route::post('/add', 'addToCart')->name('addToCart');
-        Route::put('/update/{itemId}', 'updateItemQuantity')->name('update');
-        Route::delete('/remove/{itemId}', 'removeFromCart')->name('remove');
+        Route::get('', 'index')->name('index');
+        Route::get('/user/{userId}', 'viewUserCart')->name('viewUserCart');
+        Route::put('/user/{userId}', 'updateUserCart')->name('updateUserCart');
     });
     // cart routes
 

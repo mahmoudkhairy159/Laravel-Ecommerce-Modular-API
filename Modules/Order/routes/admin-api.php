@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Modules\Order\App\Http\Controllers\Admin\DiscountController;
 use Modules\Order\App\Http\Controllers\Admin\OrderController;
 use Modules\Order\App\Http\Controllers\Admin\OrderHistoryController;
 use Modules\Order\App\Http\Controllers\Admin\OrderItemController;
@@ -42,13 +42,18 @@ Route::prefix('v1')->name('admin-api.')->group(function () {
     });
     Route::apiResource('order-items', OrderItemController::class)->except(['index']);
     //order-items
-     //order-shipping-information
-     Route::controller(OrderShippingInformationController::class)->prefix('order-shipping-information')->as('order-shipping-information.')->group(function () {
+    //order-shipping-information
+    Route::controller(OrderShippingInformationController::class)->prefix('order-shipping-information')->as('order-shipping-information.')->group(function () {
         Route::get('/order/{id}', 'getByOrderId')->name('getByOrderId');
     });
     Route::apiResource('order-shipping-information', OrderShippingInformationController::class)->except(['index']);
     //order-shipping-information
 
-
+    // Discount Routes
+    Route::controller(DiscountController::class)->prefix('discounts')->as('discounts.')->group(function () {
+        Route::post('/apply-discount', 'applyDiscount')->name('applyDiscount');
+    });
+    Route::apiResource('discounts', DiscountController::class);
+    // Discount Routes
 
 });

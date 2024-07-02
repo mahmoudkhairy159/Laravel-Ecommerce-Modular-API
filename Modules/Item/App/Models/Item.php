@@ -10,6 +10,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Modules\Admin\App\Models\Admin;
 use Modules\Brand\App\Models\Brand;
+use Modules\Cart\App\Models\CartItem;
 use Modules\Category\App\Models\Category;
 use Modules\Item\App\Filters\ItemFilter;
 use Modules\Order\App\Models\Order;
@@ -88,6 +89,10 @@ class Item extends Model implements TranslatableContract
      public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_items')->withPivot('quantity', 'price');
+    }
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
     //relationships
 

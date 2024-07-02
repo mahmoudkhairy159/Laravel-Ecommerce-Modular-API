@@ -1,29 +1,25 @@
 <?php
 
-namespace Modules\Order\App\Http\Requests\Api\Order;
+namespace Modules\Order\App\Http\Requests\Admin\Discount;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
-use Modules\Order\App\Models\Order;
 
-class UpdateOrderRequest extends FormRequest
+class StoreDiscountRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
     {
-        return [
-            'payment_method' => ['required', 'string', Rule::in(Order::getPaymentMethods())],
-            'payment_id' => ['nullable', 'exists:user_payments,id'],
-            'notes' => ['nullable', 'string'],
-            'items' => ['nullable', 'array'],
-            'items.*.item_id' => ['required_with:items', 'exists:items,id'],
-            'items.*.quantity' => ['required_with:items', 'integer', 'min:1'],
-            'items.*.price' => ['required_with:items', 'numeric'],
 
+        return [
+            'code' => ['required', 'unique:discounts,code'],
+            'amount' => ['nullable', 'numeric', 'min:0'],
+            'percentage' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'expires_at' => ['required', 'date'],
+            'usage_limit' => ['required', 'integer', 'min:1'],
         ];
     }
 
@@ -34,6 +30,7 @@ class UpdateOrderRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Handle a failed validation attempt.
      *
@@ -47,7 +44,7 @@ class UpdateOrderRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'errors' => $validator->errors(),
             'message' => 'Validation Error',
-            'statusCode' => 422
+            'statusCode'=>422
         ], 422));
     }
 }

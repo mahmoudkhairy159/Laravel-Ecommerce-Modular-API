@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Order\App\Http\Controllers\Api\DiscountController;
 use Modules\Order\App\Http\Controllers\Api\OrderController;
 use Modules\Order\App\Http\Controllers\Api\OrderHistoryController;
 use Modules\Order\App\Http\Controllers\Api\OrderItemController;
@@ -41,4 +42,11 @@ Route::prefix('v1')->name('user-api.')->group(function () {
         Route::get('/order/{id}', 'getByOrderId')->name('getByOrderId');
     });
     Route::apiResource('order-shipping-information', OrderShippingInformationController::class)->only(['update', 'destroy']);
+         //order-shipping-information
+  // Discount routes
+  Route::controller(DiscountController::class)->name('discounts.')->prefix('discounts')->group(function () {
+    Route::post('/apply-discount', 'applyDiscount')->name('applyDiscount');
+
+});
+// Discount routes
 });

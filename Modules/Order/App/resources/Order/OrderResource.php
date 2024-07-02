@@ -25,7 +25,7 @@ class OrderResource extends JsonResource
             'payment_method' => $this->payment_method,
             'payment_status' => $this->payment_status,
             'transaction_id' => $this->transaction_id,
-            'total_cost' => $this->total_cost,
+            'total_price' => $this->total_price,
             'tax' => $this->tax,
             'notes' => $this->notes,
             'user' => new UserResource($this->whenLoaded('user')),

@@ -74,6 +74,10 @@ class CartServiceProvider extends ServiceProvider
     {
         $this->publishes([module_path($this->moduleName, 'config/config.php') => config_path($this->moduleNameLower.'.php')], 'config');
         $this->mergeConfigFrom(module_path($this->moduleName, 'config/config.php'), $this->moduleNameLower);
+        $this->mergeConfigFrom(
+            module_path($this->moduleName, 'config/acl.php'),
+            'acl'
+        );
     }
 
     /**
@@ -110,5 +114,14 @@ class CartServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+    protected function mergeConfigFrom($path, $key)
+    {
+        $config = $this->app->make('config');
+
+        $config->set($key, array_merge(
+            require $path,
+            $config->get($key, [])
+        ));
     }
 }

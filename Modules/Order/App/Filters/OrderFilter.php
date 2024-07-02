@@ -123,7 +123,7 @@ class OrderFilter extends ModelFilter
     }
 
      /**
-     * Filter by total_cost range.
+     * Filter by total_price range.
      *
      * @param float $minTotalCost
      * @param float $maxTotalCost
@@ -133,12 +133,12 @@ class OrderFilter extends ModelFilter
     {
         if (request()->toTotalCost === null) {
             return $this->where(function ($q) use ($fromTotalCost) {
-                return $q->where('total_cost', $fromTotalCost);
+                return $q->where('total_price', $fromTotalCost);
             });
         }
 
         return $this->where(function ($q) use ($fromTotalCost) {
-            return $q->where('total_cost', '>=', $fromTotalCost);
+            return $q->where('total_price', '>=', $fromTotalCost);
         });
     }
 
@@ -146,12 +146,12 @@ class OrderFilter extends ModelFilter
     {
         if (request()->fromTotalCost === null) {
             return $this->where(function ($q) use ($toTotalCost) {
-                return $q->where('total_cost', $toTotalCost);
+                return $q->where('total_price', $toTotalCost);
             });
         }
 
         return $this->where(function ($q) use ($toTotalCost) {
-            return $q->where('total_cost', '<=', $toTotalCost);
+            return $q->where('total_price', '<=', $toTotalCost);
         });
     }
 

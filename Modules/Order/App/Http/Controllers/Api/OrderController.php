@@ -11,6 +11,8 @@ use Modules\Order\App\Http\Requests\Api\Order\UpdateOrderRequest;
 use Modules\Order\App\Repositories\OrderRepository;
 use Modules\Order\App\resources\Order\OrderCollection;
 use Modules\Order\App\resources\Order\OrderResource;
+use Modules\Order\App\Services\PurchaseOrderService;
+use Modules\Order\App\Services\UpdateOrderService;
 
 class OrderController extends Controller
 {
@@ -54,12 +56,12 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request,PurchaseOrderService $purchaseOrderService)
     {
         try {
             $data =  $request->validated();
             $data['user_id'] = auth()->guard($this->guard)->id();
-            $created = $this->orderRepository->createOne($data);
+            $created = $purchaseOrderService->purchaseOrder($data);
             if ($created) {
                 return $this->successResponse(
                     new OrderResource($created),
@@ -119,18 +121,18 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderRequest $request, $id)
+    public function update(UpdateOrderRequest $request, $id,UpdateOrderService $updateOrderService)
     {
         try {
-            $data = $this->orderRepository->getOneById($id);
-            if (!$data) {
+            $order = $this->orderRepository->getOneById($id);
+            if (!$order) {
                 return $this->messageResponse(
                     __('app.data-not-found'),
                     false,
                     404
                 );
             }
-            if($data->user_id != auth()->guard($this->guard)->id()){
+            if($order->user_id != auth()->guard($this->guard)->id()){
                 return $this->errorResponse(
                     [],
                     __('app.unauthorized'),
@@ -139,7 +141,7 @@ class OrderController extends Controller
             }
 
             $data =  $request->validated();
-            $updated = $this->orderRepository->update($data, $id);
+            $updated = $updateOrderService->updateOrder($data, $order);
 
             if ($updated) {
                 return $this->successResponse(

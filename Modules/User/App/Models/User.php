@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Admin\App\Models\Admin;
 use Modules\Area\App\Models\City;
 use Modules\Area\App\Models\Country;
+use Modules\Cart\App\Models\Cart;
 use Modules\Order\App\Models\Order;
 use Modules\Payment\App\Models\UserPayment;
 use Modules\User\Database\Factories\UserFactory;
@@ -155,7 +156,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
-
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
     // otp
 
     public function otps()

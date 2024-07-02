@@ -71,6 +71,24 @@ return [
         "deleted-failed" => "Order Item deleted failed",
         "restored-failed" => "Order Item restored failed",
     ],
+    "discounts" => [
+        "discounts" => "Discounts",
+        "discount" => "Discount",
+        "show" => "Show Discounts",
+        "create" => "create Discount",
+        "update" => "update Discount",
+        "delete" => "delete Discount",
+        "destroy" => "destroy Discount",
+        "created-successfully" => "Discount created successfully",
+        "updated-successfully" => "Discount updated successfully",
+        "deleted-successfully" => "Discount deleted successfully",
+        "restored-successfully" => "Discount restored successfully",
+        "created-failed" => "Discount created failed",
+        "updated-failed" => "Discount updated failed",
+        "deleted-failed" => "Discount deleted failed",
+        "restored-failed" => "Discount restored failed",
+    ],
+
 
 
 ];

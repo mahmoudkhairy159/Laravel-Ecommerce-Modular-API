@@ -2,7 +2,9 @@
 
 namespace Modules\Order\App\Repositories;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
+use Modules\Order\App\Models\Discount;
 use Modules\Order\App\Models\Order;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -71,6 +73,53 @@ class OrderRepository extends BaseRepository
             DB::rollBack();
             return false;
         }
+    }
+    public function applyDiscount($data)
+    {
+        DB::beginTransaction();
+
+        try {
+            $order = $this->model->findOrFail($data['order_id']);
+
+            // Find the discount by code
+            $discount = Discount::where('code', $data['code'])->first();
+
+            if (!$discount || !$discount->isValid()) {
+                throw new Exception(__('Invalid or expired discount code.'));
+            }
+
+            // Calculate the discount amount
+            $discountAmount = 0;
+
+            if ($discount->amount) {
+                $discountAmount = $discount->amount;
+            } elseif ($discount->percentage) {
+                $totalPrice = $this->calculateTotalPrice($order);
+                $discountAmount = ($discount->percentage / 100) * $totalPrice;
+            }
+
+            // Apply the discount to the order
+            $order->discount_amount = $discountAmount;
+            $order->total_price -= $discountAmount; // Update total price after discount
+            $order->save();
+
+            // Update the discount usage count
+            $discount->used_count += 1;
+            $discount->save();
+
+            DB::commit();
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
+
+    public function calculateTotalPrice($order)
+    {
+        return $order->items->sum(function ($orderItem) {
+            return $orderItem->item->price * $orderItem->quantity;
+        });
     }
 
 }

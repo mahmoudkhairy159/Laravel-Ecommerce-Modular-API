@@ -1,14 +1,12 @@
 <?php
 
-namespace Modules\Order\App\Http\Requests\Api\Order;
+namespace Modules\Order\App\Http\Requests\Api\Discount;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
-use Modules\Order\App\Models\Order;
 
-class UpdateOrderRequest extends FormRequest
+class ApplyDiscountRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,13 +14,8 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'payment_method' => ['required', 'string', Rule::in(Order::getPaymentMethods())],
-            'payment_id' => ['nullable', 'exists:user_payments,id'],
-            'notes' => ['nullable', 'string'],
-            'items' => ['nullable', 'array'],
-            'items.*.item_id' => ['required_with:items', 'exists:items,id'],
-            'items.*.quantity' => ['required_with:items', 'integer', 'min:1'],
-            'items.*.price' => ['required_with:items', 'numeric'],
+            'order_id' => ['required', 'exists:orders,id'],
+            'code' => 'required|string|exists:discounts,code}',
 
         ];
     }
@@ -34,6 +27,7 @@ class UpdateOrderRequest extends FormRequest
     {
         return true;
     }
+
     /**
      * Handle a failed validation attempt.
      *

@@ -25,7 +25,8 @@ class Order extends Model
         'payment_method',
         'payment_status',
         'transaction_id',
-        'total_cost',
+        'total_price',
+        'discount_amount',
         'tax',
         'notes'
     ];

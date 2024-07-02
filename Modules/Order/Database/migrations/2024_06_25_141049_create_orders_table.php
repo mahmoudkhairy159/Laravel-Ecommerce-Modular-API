@@ -17,11 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->dateTime('order_date');
-            $table->enum('status',Order::getStatuses())->default(Order::STATUS_PENDING);
+            $table->enum('status', Order::getStatuses())->default(Order::STATUS_PENDING);
             $table->enum('payment_method', Order::getPaymentMethods())->nullable();
             $table->enum('payment_status', Order::getPaymentStatuses())->nullable();
             $table->string('transaction_id')->nullable();
-            $table->decimal('total_cost', 10, 2);
+            $table->decimal('discount_amount', 8, 2)->default(0);
+            $table->decimal('total_price', 8, 2)->default(0);
             $table->decimal('tax', 10, 2)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();

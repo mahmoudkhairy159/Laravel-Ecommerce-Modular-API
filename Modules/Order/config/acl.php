@@ -89,6 +89,28 @@ return [
             ],
         ]
         ],
+        "discounts" => [
+            "name" => __('order::app.discounts.discounts'),
+            "sort" => 18,
+            "permissions" =>  [
+                [
+                    'key' => 'discounts.show',
+                    'name' => __('order::app.discounts.show'),
+                ],
+                [
+                    'key' => 'discounts.create',
+                    'name' => __('order::app.discounts.create'),
+                ],
+                [
+                    'key' => 'discounts.update',
+                    'name' => __('order::app.discounts.update'),
+                ],
+                [
+                    'key' => 'discounts.destroy',
+                    'name' => __('order::app.discounts.destroy'),
+                ],
+            ]
+            ],
 
 
 ];

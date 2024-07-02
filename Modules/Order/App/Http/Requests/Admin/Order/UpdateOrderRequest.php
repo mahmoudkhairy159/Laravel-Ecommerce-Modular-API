@@ -16,16 +16,13 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['sometimes', 'exists:users,id'],
-            'payment_id' => ['sometimes', 'exists:user_payments,id'],
-            'order_date' => ['sometimes', 'date'],
-            'status' => ['required', 'string',  Rule::in(Order::getStatuses())],
             'payment_method' => ['required', 'string', Rule::in(Order::getPaymentMethods())],
-            'payment_status' => ['required', 'string', Rule::in(Order::getPaymentStatuses())],
-            'transaction_id' => ['nullable', 'string'],
-            'total_cost' => ['sometimes', 'numeric', 'min:0'],
-            'tax' => ['nullable', 'numeric', 'min:0'],
+            'payment_id' => ['nullable', 'exists:user_payments,id'],
             'notes' => ['nullable', 'string'],
+            'items' => ['nullable', 'array'],
+            'items.*.item_id' => ['required_with:items', 'exists:items,id'],
+            'items.*.quantity' => ['required_with:items', 'integer', 'min:1'],
+            'items.*.price' => ['required_with:items', 'numeric'],
         ];
     }
 
