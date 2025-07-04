@@ -3,7 +3,6 @@
 namespace Modules\User\App\resources\User;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\Admin\App\resources\Role\RoleResource;
 use Modules\User\App\resources\UserProfile\UserProfileResource;
 
 class UserResource extends JsonResource
