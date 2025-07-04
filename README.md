@@ -263,11 +263,5 @@ All API responses follow a consistent format:
 }
 ```
 
-### Filtering and Sorting
-
-Use query parameters for filtering:
-```
-GET /api/items?filter[category_id]=1&filter[brand_id]=2&sort=-created_at&per_page=20
-```
 
 
