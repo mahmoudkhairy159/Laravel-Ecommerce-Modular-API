@@ -1,4 +1,4 @@
-# Laravel Ecommerce API
+# Laravel Ecommerce Modular API
 
 > A comprehensive, modular e-commerce API built with Laravel 10, featuring advanced functionalities for modern online shopping platforms.
 
